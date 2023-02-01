@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block tituloweb %}
+Detalle
+{% endblock tituloweb %}
+
+
+{% block contenido %}
+<main class="portfolio-list">
+    <div class="container">
+        <br>
+        <!-- <h1 class="oleez-page-title wow fadeInUp">Detalles</h1> -->
+        <article class="project">
+            <div class="row">
+                <div class="col-md-6 mb-5 project-content wow fadeInLeft">
+                    <h2 class="project-title">{{ detalles.title }}</h2>
+                    <h6 class="mb-4" style="color: darkgray; text-align: justify; font-weight: normal;">
+                        {{ detalles.resume }}
+                    </h6>
+                    <h6 class="mb-5" style="color: darkgray; text-align: justify; font-weight: lighter;">
+                        {{ detalles.content | safe}}
+                    </h6>
+
+                    <a href="{% url 'entrada_app:entradas' %}" class="project-link" style="color:dodgerblue; font-size: medium;">
+                        <i class="fa fa-arrow-left"></i>&nbsp;
+                        Regresar                         
+                    </a>                    
+                </div>
+                <div class="col-md-6 mb-5">
+                    <div class="project-thumbnail-wrapper wow fadeInRight mb-3">
+                        <img src="{{ detalles.image.url }}" alt="project">
+                    </div>
+                    <form action="{% url 'favoritos_app:add_favoritos' detalles.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-info">
+                            Agregar a favoritos                         
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+
+{% endblock contenido %}

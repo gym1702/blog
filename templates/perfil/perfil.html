@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+{% block tituloweb %}
+Inicio
+{% endblock tituloweb %}
+
+
+{% block contenido %}
+
+<main class="">
+    <div class="container">
+        <br>
+        <!-- <h1 class="oleez-page-title wow fadeInUp">Detalles</h1> -->
+        <article class="project">
+            <div class="row">
+                <div class="col-md-4 mb-5 project-content wow fadeInLeft">
+                    <h2 class="project-title">{{ user.full_name }}</h2>
+                    <h6 class="mb-1" style="color: darkgray; text-align: justify; font-weight: normal;">
+                        {{ user.email }}
+                    </h6>
+                    <h6 class="mb-1" style="color: darkgray; text-align: justify; font-weight: normal;">
+                        {{ user.ocupacion }}
+                    </h6>
+                    <h6 class="mb-5" style="color: darkgray; text-align: justify; font-weight: normal;">
+                        {{ user.dia_nac }}
+                    </h6>
+
+                    <a href="{% url 'home_app:index' %}" class="mb-5" style="color:rgb(234, 153, 67); font-size: medium;">
+                        <i class="fa fa-pen"></i>&nbsp;
+                        Editar datos                         
+                    </a>
+                    <br>
+                    <br>
+                    <br>
+
+                    <a href="{% url 'entrada_app:entradas' %}" class="project-link" style="color:dodgerblue; font-size: medium;">
+                        <i class="fa fa-arrow-left"></i>&nbsp;
+                        Regresar                         
+                    </a>
+                </div>
+
+                <div class="col-md-8 mb-5 project-content wow fadeInLeft">
+                    {% for entrada in entradas_user %}
+                        <div class="card">
+                            <div class="media m-3">                            
+                                <img src="{{ entrada.entry.image.url }}" alt="client" class="testimonial-card-img" style="width: 200px;">
+                                &nbsp; &nbsp; &nbsp;
+                                
+                                <div class="media-body">
+                                    <p class="section-title" style="font-size:x-large;">
+                                        {{ entrada.entry.title }}
+                                    </p>
+                                    <p class="testimonial-card-content" style="text-align: justify;">
+                                        {{ entrada.entry.resume }}
+                                    </p>
+                                    
+                                    <form method="post" action="{% url 'favoritos_app:eliminar_favorito' entrada.pk %}">
+                                        {% csrf_token %}
+                                        
+                                        <a href="{% url 'entrada_app:detalle_entrada' entrada.entry.id %}" class="btn btn-info">Ver</a>
+                                        
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+
+                                    </form>                                
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    {% endfor %}                        
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
+
+{% endblock contenido %}
+

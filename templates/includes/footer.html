@@ -1,0 +1,82 @@
+{% load static %}
+
+<footer class="oleez-footer wow fadeInUp">
+    <div class="container">
+        <div class="footer-content">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ home.logo_principal.url }}" alt="rgr-sistemas" width="200" class="footer-logo">
+                    
+                    <h3>Contacto</h3>
+
+                    <form method="POST" action="{% url 'home_app:crear_contacto' %}">  
+                        {% csrf_token %}                      
+                        <div class="row">
+                            <div class="col-6">
+                                <label class="form-label">Nombre</label>
+                                <input class="form-control" type="text" name="full_name" id="id_full_name" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Email</label>
+                                <input class="form-control" type="email" name="email" id="id_email" required>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="form-label">Mensaje</label>
+                                <textarea class="form-control" aria-label="With textarea" name="messagge" id="id_messagge" required></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                                                   
+                            
+                    </form>
+                </div>
+
+                <div class="col-2 mt-5">
+                    <nav class="footer-social-links text-center">
+                        <a href="{{ home.link_red_social1 }}" target="_blank"><img src="{{ home.logo_red_social1.url }}" alt="{{ home.red_social1 }}" width="20" class=""></a>&nbsp;
+                        <a href="{{ home.link_red_social2 }}" target="_blank"><img src="{{ home.logo_red_social2.url }}" alt="{{ home.red_social2 }}" width="20" class=""></a>&nbsp;
+                        <a href="{{ home.link_red_social3 }}" target="_blank"><img src="{{ home.logo_red_social3.url }}" alt="{{ home.red_social3 }}" width="25" class=""></a>&nbsp;
+                        <a href="{{ home.link_red_social4 }}" target="_blank"><img src="{{ home.logo_red_social4.url }}" alt="{{ home.red_social4 }}" width="25" class=""></a>&nbsp;
+                    </nav>
+                </div>
+                <br>
+
+                <div class="col-md-4 mt-5">
+                    <div class="row">
+                        <div class="col-md-6 footer-widget-text">
+                            <h6 class="widget-title"><i class="widget-title fa fa-phone"></i> Telefono</h6>
+                            <p class="widget-content">{{ home.phone }}</p>
+                        </div>
+                        <div class="col-md-6 footer-widget-text">
+                            <h6 class="widget-title"><i class="widget-title fa fa-envelope"></i> Email</h6>
+                            <p class="widget-content">{{ home.email }}</p>
+                        </div>
+                        <div class="col-md-6 footer-widget-text">
+                            <h6 class="widget-title"><i class="widget-title fa fa-map-marker-alt"></i> Dirección</h6>
+                            <p class="widget-content">{{ home.address }}</p>
+                        </div>
+                        <div class="col-md-6 footer-widget-text">
+                            <h6 class="widget-title"><i class="widget-title fa fa-clock"></i> Horario</h6>
+                            <p class="widget-content">{{ home.horario }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-text">
+            <p class="mb-md-0">©  2023, RGR-Sistemas.<a href="https://www.bootstrapdash.com" target="_blank" rel="noopener noreferrer" class="text-reset"></a></p>
+            <p class="mb-0">Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>

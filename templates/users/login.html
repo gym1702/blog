@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block tituloweb %}
+Inicio
+{% endblock tituloweb %}
+
+
+{% block contenido %}
+
+<div class="row">
+    <div class="container-sm col-3">
+        <div class="card mt-5">
+
+            <div class="card-header text-center">
+                <h2>Bienvenido</h2>
+            </div>
+
+            <form class="m-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <h6 class="text-center mb-4">Acceso al sistema</h6>
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <label for="">Email</label>
+                        {{ form.email}}
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <label for="">Contraseña</label>
+                        {{ form.password}}
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                    <a href="{% url 'users_app:usuarios_crear' %}" class="btn btn-info btn-block">Registrar</a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock contenido %}
+
+{% block footer %}
+{% endblock footer %}

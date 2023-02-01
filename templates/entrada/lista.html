@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+
+{% block tituloweb %}
+Inicio
+{% endblock tituloweb %}
+
+
+{% block contenido %}
+
+<main class="blog-grid-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <h1 class="oleez-page-title wow fadeInUp">Blogs</h1>
+                <hr>
+                <br>
+                
+                <!-- BUSCADOR -->
+                <div class="col-12">
+                    <form action="" method="get" >
+                        {% csrf_token %}
+                        <div class="row">             
+                            <div class="col-6">                                
+                                <input class="form-control" type="text" name="kword" id="kword">
+                            </div>
+                            <div class="col-3">
+                                <button type="submit" class="btn btn-primary">Buscar</button>
+                            </div>
+                        </div>                      
+                    </form>
+                </div>
+                <br>
+                <hr>
+
+                <!-- TARJETAS -->
+                <div class="row">
+                    {% for entrada in entradas %}
+                    <div class="col-md-4">
+                        <div class="blog-post-card wow fadeInUp">
+                            <div class="blog-post-thumbnail-wrapper">
+                                <a href="{% url 'entrada_app:detalle_entrada' entrada.id %}">
+                                    <img src="{{ entrada.image.url }}" alt="blog" style="width: 250px;">
+                                </a>
+                            </div>                            
+                            <h5 class="blog-post-title">{{ entrada.title }}</h5>
+                            <p class="blog-post-date">{{ entrada.resume | truncatechars:100 }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                        <h5 style="color:darkgrey;">No existen entradas con el concepto de búsqueda</h5>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- SEPARADOR -->
+            <!-- <div class="col-1">
+            </div> -->
+
+            <!-- CATEGORIAS -->
+            <div class="col-3">
+                <div class="sidebar-widget wow fadeInUp">
+                    <br>
+                    <br>
+                    <h5 class="widget-title">Categorías</h5>                    
+                    
+                    <div class="widget-content">
+                        <ul class="category-list" style="color:darkgray;">
+                            {% for categoria in categorias %}
+                                <li><a href="?categoria={{ categoria.short_name }}">{{ categoria.name }}</a></li>
+                            {% endfor %} 
+                        </ul>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        
+        <!-- PAGINACION -->
+        {% if is_paginated %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination align-items-center justify-content-center">
+                
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                    </li>
+                {% endif %}                        
+                
+                {% for pagina in paginator.page_range %}                         
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ pagina }}">{{ pagina }}</a>
+                    </li> 
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    </li>
+                {% endif %} 
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</main>
+
+
+{% endblock contenido %}
+
+
+
+
+
+

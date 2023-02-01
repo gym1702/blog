@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+
+{% block tituloweb %}
+    Crear usuario
+{% endblock tituloweb %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+
+{% block contenido %}
+
+<div class="row">
+    <div class="container-sm col-8">
+        <div class="card mt-5">
+
+            <div class="card-header">
+                <h2>Registrar usuario</h2>
+            </div>
+
+            <form class="form-control" action="" method="post">
+                
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Email</label>
+                        {{ form.email}}
+                    </div>
+                    <div class="col-6">
+                        <label for="">Nombre</label>
+                        {{ form.full_name}}
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-4">
+                        <label for="">Ocupacion</label>
+                        {{ form.ocupacion}}
+                    </div>
+                    <div class="col-4">
+                        <label for="">genero</label>
+                        {{ form.genero}}
+                    </div>
+                    <div class="col-4">
+                        <label for="">Fecha de nacimiento</label>
+                        {{ form.dia_nac}}
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Contraseña</label>
+                        {{ form.pass1}}
+                    </div>
+                    <div class="col-6">
+                        <label for="">Confirmar contraseña</label>
+                        {{ form.pass2}}
+                    </div>
+                </div>
+                <br>
+
+                <!-- {{ form.as_p}} -->
+
+                <div align="right">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a href="{% url 'users_app:login' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+                <br>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock contenido %}
+
+{% block footer %}
+{% endblock footer %}

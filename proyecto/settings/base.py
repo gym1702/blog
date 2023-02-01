@@ -52,12 +52,15 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-
+    'applications.home',
+    'applications.users',
+    'applications.entrada',
+    'applications.favoritos',
 ]
 
-
 THIRD_PARTY_APPS = [
-
+    'fontawesomefree',
+    'ckeditor',
 ]
 
 
@@ -87,6 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #CONTEXT PROCESOR AGREGADOS
+                #'applications.procesors.footerandnavbar',
             ],
         },
     },
@@ -114,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 #****************************************************************************
 # INDICAMOS QUE ESTA CONFIGURACION SE HARA CARGO DE LOS USUARIOS DEL SISTEMA
 #****************************************************************************
-#AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 
 
